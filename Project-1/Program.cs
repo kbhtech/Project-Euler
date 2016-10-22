@@ -8,58 +8,48 @@ namespace Project_1
 {
     class Program
     {
-        
+        static List<int> retval;
 
         static void Main(string[] args)
         {
-            int[][] sequences = iterate(new int[] { 3, 5 }, 1000);
+            retval = new List<int>();
 
-            List<int> order = new List<int>(1000);
-            foreach(int[] sequence in sequences)
+
+            int t = Convert.ToInt32(Console.ReadLine());
+            string cache = "";
+
+
+            List<long> maximums = new List<long>();
+            for (int a0 = 0; a0 < t; a0++)
             {
-                foreach (int multiple in sequence)
-                {
-                    order.Add(multiple);
-
-                }
+                maximums.Add(Convert.ToInt64(Console.ReadLine()));
             }
 
-            order = order.Distinct().ToList();
-            order.Sort();
-
-            Console.Write(string.Join(",", order.ToArray()));
-            Console.ReadKey();
-        }
-
-        static void next(int multiple, ref int i)
-        {
-            i = multiple * ((i / multiple) + 1);
-        }
-
-        static int[] iterate(int multiple, int max)
-        {
-            List<int> retval = new List<int>();
-            for (int i = 0; i < max; next(multiple, ref i))
+            foreach(long max in maximums)
             {
-                if (i > 0)
+                next(3, max);
+                next(5, max);
+
+                retval.Sort();
+                Console.WriteLine(retval.Sum());
+                retval.Clear();
+            }
+
+            Console.Write(cache);
+
+        }
+
+        static void next(int multiple, long max)
+        {
+            for(int i = multiple, x = multiple, multiplier = 1; (multiplier * x) < max; multiplier++, i = multiplier * x)
+            {
+                if (!retval.Contains(i))
                 {
                     retval.Add(i);
                 }
             }
-
-            return retval.ToArray();
         }
 
-        static int[][] iterate(int[] multiples, int max)
-        {
-            List<int[]> arrays = new List<int[]>();
 
-            foreach (int multiple in multiples)
-            {
-                arrays.Add(iterate(multiple, max));
-            }
-
-            return arrays.ToArray() ;
-        }
     }
 }

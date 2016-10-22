@@ -17,8 +17,7 @@ namespace Project_2
     class Program
     {
         static void Main(String[] args)
-        {
-     
+        {     
             if (args.Count() < 2)
             {
                 int sets = Convert.ToInt32(Console.ReadLine());
