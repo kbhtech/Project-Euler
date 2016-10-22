@@ -63,6 +63,9 @@ namespace Project_2
             } while (continuum[continuum.Count - 2] + continuum[continuum.Count - 1] < max);
 
             return continuum.ToArray();
+
+
+
         }
     }
 }

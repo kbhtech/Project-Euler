@@ -8,48 +8,87 @@ namespace Project_1
 {
     class Program
     {
-        static List<int> retval;
-
         static void Main(string[] args)
         {
-            retval = new List<int>();
-
-
+            List<int> to_scan = new List<int>();
             int t = Convert.ToInt32(Console.ReadLine());
-            string cache = "";
-
-
-            List<long> maximums = new List<long>();
             for (int a0 = 0; a0 < t; a0++)
             {
-                maximums.Add(Convert.ToInt64(Console.ReadLine()));
+                int n = Convert.ToInt32(Console.ReadLine());
+                to_scan.Add(n);
             }
 
-            foreach(long max in maximums)
+            foreach (int n in to_scan)
             {
-                next(3, max);
-                next(5, max);
-
-                retval.Sort();
-                Console.WriteLine(retval.Sum());
-                retval.Clear();
+                Console.WriteLine(scan(n));
             }
 
-            Console.Write(cache);
-
+            Console.ReadKey();
         }
 
-        static void next(int multiple, long max)
+
+        static int scan(int max, int min = 0)
         {
-            for(int i = multiple, x = multiple, multiplier = 1; (multiplier * x) < max; multiplier++, i = multiplier * x)
+            int retval = 0;
+
+            for(int i = next(min); i < max; next(ref i))
             {
-                if (!retval.Contains(i))
-                {
-                    retval.Add(i);
-                }
+                retval += i;
             }
+
+            return retval;
         }
 
+        static void next(ref int pointer)
+        {
+            decimal value = System.Convert.ToDecimal(pointer);
+            int next = 0;
 
+            if (value / 5 - Math.Floor(value / 5) == 0)
+            {
+                next = 5;
+            }
+
+            if (value / 5 - Math.Floor(value / 5) >= System.Convert.ToDecimal(.20) && value / 5 - Math.Floor(value / 5) < System.Convert.ToDecimal(.40))
+            {
+               next = 4;
+            }
+
+            if (value / 5 - Math.Floor(value / 5) >= System.Convert.ToDecimal(.40) && value / 5 - Math.Floor(value / 5) < System.Convert.ToDecimal(.60))
+            {
+               next = 3;
+            }
+            if (value / 3 - Math.Floor(value / 3) == 0)
+            {
+               next = 3;
+            }
+
+
+            if (value / 5 - Math.Floor(value / 5) >= System.Convert.ToDecimal(.60) && value / 5 - Math.Floor(value / 5) < System.Convert.ToDecimal(.80))
+            {
+               next = 2;
+            }
+            if (value / 3 - Math.Floor(value / 3) >= System.Convert.ToDecimal(.33333) && value / 3 - Math.Floor(value / 3) < System.Convert.ToDecimal(.66666))
+            {
+                next = 2;
+            }
+            if (value / 5 - Math.Floor(value / 5) >= System.Convert.ToDecimal(.80))
+            {
+                next = 1;
+            }
+            if (value / 3 - Math.Floor(value / 3) >= System.Convert.ToDecimal(.66666))
+            {
+                next = 1;
+            }
+
+
+            pointer += next;
+        }
+
+        static int next(int pointer)
+        {
+            next(ref pointer);
+            return pointer;
+        }
     }
 }
