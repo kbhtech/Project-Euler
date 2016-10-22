@@ -4,3 +4,8 @@ Project Euler is a series of challenging mathematical/computer programming probl
 # Courtesies: 
 This repository exists for nothing other than to keep an archive of the work that I have done and to demonstrate that work to employers. While I do not mind others looking at my work for a personal interest, I do not wish that others would replicate my work for sites and services that prohibit that behavior in their Usage Agreements.
 
+# Project-2
+Project two was completed on October 22, 2016 and was tested as an efficient solution to the challenge.
+
+
+
